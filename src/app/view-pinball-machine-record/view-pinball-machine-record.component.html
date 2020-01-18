@@ -3,6 +3,27 @@
     <div class='bold-title' [innerText]='title'></div>
 </div>
 
+<!--
+    /// data record
+-->
+
+<!--image stuff-->
+<div class="swipe-image-wrapper" (swipe)='swipeHandler($event)' (pan)='panHandler($event)'>
+    <button class='img-view-btn img-view-previous' (click)='isPreviousClick()'>
+        <svg height="100%" version="1.1" viewBox="0 0 32 32" width="100%">
+            <path d="M 19.41,20.09 14.83,15.5 19.41,10.91 18,9.5 l -6,6 6,6 z" fill="#fff"></path>
+        </svg>
+    </button>
+    <img class='focused-image-content' [src]='focusedImageSrcString'/>
+    <button class='img-view-btn img-view-next' (click)='isNextClick()'>
+        <svg height="100%" version="1.1" viewBox="0 0 32 32" width="100%">
+            <path d="m 12.59,20.34 4.58,-4.59 -4.58,-4.59 1.41,-1.41 6,6 -6,6 z" fill="#fff"></path>
+        </svg>
+    </button>
+</div>
+
+
+<!-- controls and links-->
 <hr class='hr'>
 
 [&nbsp;<a href="search.pl?searchtype=quick">Quick&nbsp;Search</a>&nbsp;] [&nbsp;<a href="search.pl?searchtype=advanced">Advanced&nbsp;Search</a>&nbsp;]
@@ -13,6 +34,7 @@
 <hr class='hr'>
 
 <div class="machine-title-date">
+<<<<<<< HEAD
     <b><a name='"na"' [innerText]="title"></a></b> / IPD No. <a class="linkid" [href]="uri" [innerText]='"na"'></a>
     <i>/ October, 1981 / 4 Players</i><br>&nbsp;[ <a href="edit.pl?gid=307" onclick="openedit(307);">Submit Changes</a> ]
 </div>
@@ -28,4 +50,8 @@
         <button class='is-prev' (click)='isPreviousClick()'>&larr;</button>
         <button class='is-next' (click)='isNextClick()'>&rarr;</button>
     </div>
+=======
+    <b><a name='ipdbNumber' [innerText]="title"></a></b> / IPD No. <a class="linkid" [href]="uri" [innerText]='ipdbNumber'></a>
+    <i>/ October, 1981 / 4 Players</i><br>&nbsp;[ <a href="edit.pl?gid=307" onclick="return openedit(307);">Submit Changes</a> ]
+>>>>>>> efa85d1... wip
 </div>

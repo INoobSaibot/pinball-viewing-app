@@ -34,12 +34,9 @@ export class ViewPinballMachineRecordComponent implements OnInit {
       this.pinballMachineRecord = this.pinballMachineRecordService.getPinballMachine();
     }
     // end dev only
-    let images: string[] = this.pinballMachineRecord.pinballMachine.images;
 
     this.title = this.pinballMachineRecord.pinballMachine.title;
-    if(images && images.length > 0) {
-      this.focusedImageSrcString = this.pinballMachineRecord.pinballMachine.images[this.imageNumberSelected];
-    }
+    this.setDefaultImg();
 
   }
 
@@ -91,6 +88,17 @@ export class ViewPinballMachineRecordComponent implements OnInit {
       this.isPreviousClick();
     } else if (newVelocityNumber < -1){
       this.isNextClick();
+    }
+  }
+
+  private setDefaultImg() {
+    let images: string[] = this.pinballMachineRecord.pinballMachine.images;
+    const defaultImg: string = '';
+
+    if(images && images.length > 0) {
+      this.focusedImageSrcString = this.pinballMachineRecord.pinballMachine.images[this.imageNumberSelected];
+    } else {
+      this.focusedImageSrcString = defaultImg;
     }
   }
 }

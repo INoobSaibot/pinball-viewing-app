@@ -16,15 +16,50 @@
 /// photo img carasal stuff
 /// needs work
 
-.isAction-photo-buttons>button {
+.img-view-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+    text-align: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    cursor: default;
+    line-height: inherit;
+}
+
+.img-view-btn:focus, .img-view-btn {
+    outline: 0;
+}
+
+.img-view-previous {
+    // display: none;
+    height: 100%;
+    left: -32px;
+    opacity: .9;
     position: absolute;
-    top: 50%;
+    // width: 32px;
+    -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
 }
 
-.is-next {
-    right: 10px;
+.img-view-next {
+    // display: none;
+    height: 100%;
+    right: -32px;
+    opacity: .9;
+    position: absolute;
+    // width: 32px;
+    -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
 }
 
-.focused-machine-image {
+.img-view-btn:not([aria-disabled=true]):not([disabled]):not([aria-hidden=true]) {
+    cursor: p
+}
+
+.focused-image-content {
     width: 100%;
 }
