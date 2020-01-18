@@ -1,0 +1,31 @@
+<div class="header"  >
+    <div class='site-title'>The Internet Pinball Database Presents</div>
+    <div class='bold-title' [innerText]='title'></div>
+</div>
+
+<hr class='hr'>
+
+[&nbsp;<a href="search.pl?searchtype=quick">Quick&nbsp;Search</a>&nbsp;] [&nbsp;<a href="search.pl?searchtype=advanced">Advanced&nbsp;Search</a>&nbsp;]
+    [&nbsp;<a href="lists.cgi">Game&nbsp;Lists</a>&nbsp;] [&nbsp;<a href="https://archive.ipdb.org">Archives</a>&nbsp;]
+    [&nbsp;<a href="glossary.php">Pinball&nbsp;Glossary</a>&nbsp;] [&nbsp;<a href="playing/skills.html">Playing&nbsp;Skills</a>&nbsp;]
+    [&nbsp;<a href="faq.html">FAQ</a>&nbsp;] [&nbsp;<a href="myinfo/showmyinfo.pl">Settings</a>&nbsp;]
+
+<hr class='hr'>
+
+<div class="machine-title-date">
+    <b><a name='ipdbNumber' [innerText]="title"></a></b> / IPD No. <a class="linkid" [href]="uri" [innerText]='ipdbNumber'></a>
+    <i>/ October, 1981 / 4 Players</i><br>&nbsp;[ <a href="edit.pl?gid=307" onclick="return openedit(307);">Submit Changes</a> ]
+</div>
+
+<!--
+    /// data record
+-->
+
+<!--image stuff-->
+<div class="swipe-image-wrapper" (swipe)='swipeHandler($event)' (pan)='panHandler($event)'>
+    <img class='focused-machine-image' [src]='focusedImageSrcString'/>
+    <div class='isAction-photo-buttons'>
+        <button class='is-prev' (click)='isPreviousClick()'>&larr;</button>
+        <button class='is-next' (click)='isNextClick()'>&rarr;</button>
+    </div>
+</div>

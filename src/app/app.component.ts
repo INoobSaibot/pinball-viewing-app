@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ViewPinballMachineRecordComponent } from '../app/view-pinball-machine-record/view-pinball-machine-record.component';
 
 @Component({
   selector: 'app-root',

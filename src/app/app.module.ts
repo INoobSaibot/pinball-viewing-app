@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { ViewPinballMachineRecordComponent } from './view-pinball-machine-record/view-pinball-machine-record.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ViewPinballMachineRecordComponent
   ],
   imports: [
     BrowserModule
