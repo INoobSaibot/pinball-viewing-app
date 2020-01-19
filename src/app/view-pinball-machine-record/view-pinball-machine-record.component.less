@@ -1,3 +1,7 @@
+.site-title, .bold-title {
+    color: white;
+}
+
 .bold-title {
     font-size: xx-large;
     font-weight: 700;
@@ -28,6 +32,7 @@
     line-height: inherit;
 }
 
+
 .img-view-btn:focus, .img-view-btn {
     outline: 0;
 }
@@ -35,10 +40,10 @@
 .img-view-previous {
     // display: none;
     height: 100%;
-    left: -32px;
+    left: 0px;
     opacity: .9;
     position: absolute;
-    // width: 32px;
+    width: 90px;
     -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
     -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
     transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
@@ -47,13 +52,17 @@
 .img-view-next {
     // display: none;
     height: 100%;
-    right: -32px;
+    right: 0px;
     opacity: .9;
     position: absolute;
-    // width: 32px;
+    width: 90px;
     -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
     -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
     transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+}
+
+svg {
+    fill: rgba(0, 0, 0, 0.7);
 }
 
 .img-view-btn:not([aria-disabled=true]):not([disabled]):not([aria-hidden=true]) {
