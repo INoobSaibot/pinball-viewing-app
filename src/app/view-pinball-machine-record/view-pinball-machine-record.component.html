@@ -14,7 +14,7 @@
             <path d="M 19.41,20.09 14.83,15.5 19.41,10.91 18,9.5 l -6,6 6,6 z"></path>
         </svg>
     </button>
-    <img class='focused-image-content' [src]='focusedImageSrcString'/>
+    <img class='focused-image-content' [src]='focusedImageSrcString' />
     <button class='img-view-btn img-view-next' (click)='isNextClick()'>
         <svg height="100%" version="1.1" viewBox="0 0 32 32" width="100%">
             <path d="m 12.59,20.34 4.58,-4.59 -4.58,-4.59 1.41,-1.41 6,6 -6,6 z"></path>
@@ -24,12 +24,19 @@
 
 
 <!-- controls and links-->
-<hr class='hr'>
+<!--<hr class='hr'>-->
+<div class='call-to-action'>
+    <!-- this stuff should open a full page modal with the details etc. like srk-->
+    <a href="search.pl?searchtype=quick"><i class="glyphicon glyphicon-cloud"></i>Search</a>
+    <a href="search.pl?searchtype=advanced"><span class="glyphicon">&#xe003;</span>Advanced Search</a>
+    <a href="#"><span class="glyphicon glyphicon-th-list"></span>Games List</a>
+    <a href="https://archive.ipdb.org">Archives<span class="glyphicon glyphicon-folder-open"></span></a>
 
-[&nbsp;<a href="search.pl?searchtype=quick">Quick&nbsp;Search</a>&nbsp;] [&nbsp;<a href="search.pl?searchtype=advanced">Advanced&nbsp;Search</a>&nbsp;]
-    [&nbsp;<a href="lists.cgi">Game&nbsp;Lists</a>&nbsp;] [&nbsp;<a href="https://archive.ipdb.org">Archives</a>&nbsp;]
-    [&nbsp;<a href="glossary.php">Pinball&nbsp;Glossary</a>&nbsp;] [&nbsp;<a href="playing/skills.html">Playing&nbsp;Skills</a>&nbsp;]
-    [&nbsp;<a href="faq.html">FAQ</a>&nbsp;] [&nbsp;<a href="myinfo/showmyinfo.pl">Settings</a>&nbsp;]
+    <a href="glossary.php"><span class="glyphicon glyphicon-subscript"></span>Pinball&nbsp;Glossary</a>
+    <a href="playing/skills.html"><span class="glyphicon glyphicon-gift"></span>Playing&nbsp;Skills</a>
+    <a href="faq.html"><span class="glyphicon glyphicon-question-sign"></span>FAQ</a>
+    <!--<a href="myinfo/showmyinfo.pl"><span class="glyphicon glyphicon-wrench"></span>Settings</a>-->
+</div>
 
 <hr class='hr'>
 
