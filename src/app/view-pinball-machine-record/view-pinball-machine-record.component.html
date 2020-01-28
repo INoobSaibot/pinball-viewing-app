@@ -1,6 +1,11 @@
-<div class="header"  >
+<div class="header">
     <div class='site-title'>The Internet Pinball Database Presents</div>
-    <div class='bold-title' [innerText]='title'></div>
+    <span class='bold-title' [innerText]='title'></span><span class='search'><a href="search.pl?searchtype=advanced"><span class="glyphicon">&#xe003;</span>Search</a></span>
+</div>
+<hr class='hr'>
+<div class="machine-title-date">
+    <b><a name='"na"' [innerText]="title"></a></b> / IPD No. <a class="linkid" [href]="uri" [innerText]='"na"'></a>
+    <i>/ October, 1981 / 4 Players</i>
 </div>
 
 <!--
@@ -27,20 +32,17 @@
 <!--<hr class='hr'>-->
 <div class='call-to-action'>
     <!-- this stuff should open a full page modal with the details etc. like srk-->
-    <a href="search.pl?searchtype=quick"><i class="glyphicon glyphicon-cloud"></i>Search</a>
-    <a href="search.pl?searchtype=advanced"><span class="glyphicon">&#xe003;</span>Advanced Search</a>
     <a href="#"><span class="glyphicon glyphicon-th-list"></span>Games List</a>
-    <a href="https://archive.ipdb.org">Archives<span class="glyphicon glyphicon-folder-open"></span></a>
+    <a href="https://archive.ipdb.org"><span class="glyphicon glyphicon-folder-open">Archives</span></a>
 
-    <a href="glossary.php"><span class="glyphicon glyphicon-subscript"></span>Pinball&nbsp;Glossary</a>
+    <button href="glossary.php" (click)='handleGlossaryClick()'><span class="glyphicon glyphicon-subscript"></span>Pinball&nbsp;Glossary</button>
     <a href="playing/skills.html"><span class="glyphicon glyphicon-gift"></span>Playing&nbsp;Skills</a>
     <a href="faq.html"><span class="glyphicon glyphicon-question-sign"></span>FAQ</a>
     <!--<a href="myinfo/showmyinfo.pl"><span class="glyphicon glyphicon-wrench"></span>Settings</a>-->
+    <!--<a href="search.pl?searchtype=quick"><i class="glyphicon glyphicon-cloud"></i>Submit changes</a>-->
 </div>
 
-<hr class='hr'>
-
-<div class="machine-title-date">
-    <b><a name='"na"' [innerText]="title"></a></b> / IPD No. <a class="linkid" [href]="uri" [innerText]='"na"'></a>
-    <i>/ October, 1981 / 4 Players</i><br>&nbsp;[ <a href="edit.pl?gid=307" onclick="return openedit(307);">Submit Changes</a> ]
+<div *ngIf='glossaryModalOpen'>
+    <app-modal [pinballMachineRecord]="pinballMachineRecord"
+                (closeClicked)='closeClicked($event)'></app-modal>
 </div>

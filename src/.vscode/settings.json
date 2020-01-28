@@ -1,0 +1,5 @@
+{
+    "cloudfoundry-manifest.ls.java.vmargs": [
+        "\"javascript.implicitProjectConfig.experimentalDecorators\": true"
+    ]
+}

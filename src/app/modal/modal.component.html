@@ -1,0 +1,13 @@
+<div id="myModal" class="modal" [ngClass]="(hidden==false)? 'sshow':'hhidden'">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" (click)="close()">×</span>
+      
+      <div [innerText]="pinballMachineRecord.averageFunRating"></div>
+      <li *ngFor="let item of items; index as i; trackBy: trackByFn">
+          <span [innerText]="item"></span>
+      </li>
+    </div>
+  
+  </div>

@@ -20,7 +20,7 @@ interface Rom {
     link?: string
 }
 
-interface PhotoRecord {
+export interface PhotoRecord {
     linkDisplayName?: string
     uri?: string
     notes?: string
@@ -33,4 +33,5 @@ export interface PinballMachineRecord {
     serialNumberDatabase?: string
     photosIn?: PhotoRecord[]
     uri?: string
+    production?: number;
 }

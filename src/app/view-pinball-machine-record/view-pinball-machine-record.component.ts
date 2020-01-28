@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, HostListener, Directive } from '@angular/core';
+import { Component, OnInit, HostListener, Directive } from '@angular/core';
 import { PinballMachineRecordService } from '../pinballMacineRecords/pinball-machine-record.service';
 import { PinballMachine, PinballMachineRecord } from '../view-pinball-machine-record/model/pinball-machine-record.model';
+import { ModalComponent } from '../modal/modal.component';
 import 'hammerjs';
 
 @Component({
@@ -17,6 +18,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   @HostListener('document:keydown.ArrowLeft', ['$event']) onLeftArrowKeydownHandler(event: KeyboardEvent) {
     this.isPreviousClick();
   }
+  
 
   readonly base64: string = 'data:image/jpeg;base64, '
   constructor(private pinballMachineRecordService: PinballMachineRecordService) { }
@@ -28,10 +30,13 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   focusedImageSrcString: string;
   imageNumberSelected: number = 0;
 
+  glossaryModalOpen: boolean;
+
   ngOnInit() {
     // being dev only
     if (this.devOnly) {
       this.pinballMachineRecord = this.pinballMachineRecordService.getPinballMachine();
+      this.glossaryModalOpen = true;
     }
     // end dev only
 
@@ -40,12 +45,20 @@ export class ViewPinballMachineRecordComponent implements OnInit {
 
   }
 
+  closeClicked(e) {
+    this.glossaryModalOpen = false;
+  }
+
   get uri(): string{
     return this.pinballMachineRecord.uri;
   }
 
   getBase64Image(index): string {
     return this.base64 + this.pinballMachineRecord.pinballMachine.images[index];
+  }
+
+  handleGlossaryClick() {
+    this.glossaryModalOpen = true;
   }
 
   isPreviousClick() {
