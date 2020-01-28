@@ -5,7 +5,7 @@
       <span class="close" (click)="close()">×</span>
       
       <div [innerText]="pinballMachineRecord.averageFunRating"></div>
-      <li *ngFor="let item of items; index as i; trackBy: trackByFn">
+      <li *ngFor="let item of items; index as i;">
           <span [innerText]="item"></span>
       </li>
     </div>
