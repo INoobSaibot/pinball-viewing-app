@@ -8,10 +8,6 @@
     <i>/ October, 1981 / 4 Players</i>
 </div>
 
-<!--
-    /// data record
--->
-
 <!--image stuff-->
 <div class="swipe-image-wrapper" (swipe)='swipeHandler($event)' (pan)='panHandler($event)'>
     <button class='img-view-btn img-view-previous' (click)='isPreviousClick()'>
@@ -19,7 +15,10 @@
             <path d="M 19.41,20.09 14.83,15.5 19.41,10.91 18,9.5 l -6,6 6,6 z"></path>
         </svg>
     </button>
+    
+    <!--img -->
     <img class='focused-image-content' [src]='focusedImageSrcString' />
+    <!-- img -->
     <button class='img-view-btn img-view-next' (click)='isNextClick()'>
         <svg height="100%" version="1.1" viewBox="0 0 32 32" width="100%">
             <path d="m 12.59,20.34 4.58,-4.59 -4.58,-4.59 1.41,-1.41 6,6 -6,6 z"></path>
