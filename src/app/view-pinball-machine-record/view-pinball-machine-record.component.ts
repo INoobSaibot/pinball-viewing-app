@@ -26,6 +26,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   devOnly: boolean = true;
 
   title: string;
+  ipdbNumber: string;
   focusedImageSrcString: string;
   imageNumberSelected: number = 0;
 
@@ -42,6 +43,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     // end dev only
 
     this.title = this.pinballMachineRecord.pinballMachine.title;
+    this.ipdbNumber = this.pinballMachineRecord.ipdbNumber;
     this.setDefaultImg();
 
   }
