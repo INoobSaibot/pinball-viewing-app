@@ -1,13 +1,11 @@
-<div id="myModal" class="modal" [ngClass]="(hidden==false)? 'sshow':'hhidden'">
+<div id="myModal" class="hover-card">
 
-    <!-- Modal content -->
-    <div class="modal-content">
+    <!-- Modal / pop-up / hover-card content -->
+    <div class="hover-card-content">
       <span class="close" (click)="close()">×</span>
-      
       <div [innerText]="pinballMachineRecord.averageFunRating"></div>
       <li *ngFor="let item of items; index as i;">
           <span [innerText]="item"></span>
       </li>
     </div>
-  
   </div>

@@ -1,8 +1,7 @@
-import { Component, OnInit, HostListener, Directive } from '@angular/core';
-import { PinballMachineRecordService } from '../pinballMacineRecords/pinball-machine-record.service';
-import { PinballMachine, PinballMachineRecord } from '../view-pinball-machine-record/model/pinball-machine-record.model';
-import { ModalComponent } from '../modal/modal.component';
+import { Component, HostListener, OnInit } from '@angular/core';
 import 'hammerjs';
+import { PinballMachineRecordService } from '../pinballMachineRecords/pinball-machine-record.service';
+import { PinballMachineRecord } from '../view-pinball-machine-record/model/pinball-machine-record.model';
 
 @Component({
   selector: 'view-pinball-machine-record',
@@ -18,7 +17,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   @HostListener('document:keydown.ArrowLeft', ['$event']) onLeftArrowKeydownHandler(event: KeyboardEvent) {
     this.isPreviousClick();
   }
-  
+
 
   readonly base64: string = 'data:image/jpeg;base64, '
   constructor(private pinballMachineRecordService: PinballMachineRecordService) { }
@@ -31,12 +30,14 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   imageNumberSelected: number = 0;
 
   glossaryModalOpen: boolean;
+  popupAliveSince: number;
 
   ngOnInit() {
     // being dev only
     if (this.devOnly) {
       this.pinballMachineRecord = this.pinballMachineRecordService.getPinballMachine();
       this.glossaryModalOpen = true;
+      this.popupAliveSince = Date.now();
     }
     // end dev only
 
@@ -58,12 +59,25 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   }
 
   handleGlossaryClick() {
-    this.glossaryModalOpen = true;
+    if(this.glossaryModalOpen === false) {
+      this.glossaryModalOpen = true;
+      this.popupAliveSince = Date.now();
+    }
+  }
+
+  clickedOutside(e) {
+    const now: number = Date.now();
+    const milliseconds = 10; /* clicking open was being picked up as an outside click even though the listener for it was added by the click itself */
+    const realOutsideClick = now - this.popupAliveSince > milliseconds;
+    if(realOutsideClick) {
+      this.glossaryModalOpen = false;
+    }
+    // else, this was click from less than 10 millis ago, probably the popup-show-button
   }
 
   isPreviousClick() {
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
-    
+
     if (images && this.imageNumberSelected === 0) {
       this.imageNumberSelected = images.length -1;
     } else {
@@ -74,7 +88,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
 
   isNextClick() {
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
-    
+
     if (images && this.imageNumberSelected === images.length -1) {
       this.imageNumberSelected = 0;
     } else {
@@ -96,7 +110,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     const velocityFactor = 8;
     const newVelocityNumber =  originalVelocity * velocityFactor;
     // let intVal = Math.floor(newVelocityNumber);
-    
+
     if(newVelocityNumber > 1) {
       this.isPreviousClick();
     } else if (newVelocityNumber < -1){

@@ -21,10 +21,6 @@
     text-align: center;
 }
 
-
-/// photo img carasal stuff
-/// needs work
-
 .img-view-btn {
     border: none;
     background-color: transparent;
@@ -35,6 +31,15 @@
     font-family: inherit;
     cursor: default;
     line-height: inherit;
+    background-color: rgba(83, 119, 172, 0.5);
+
+    opacity: .9;
+    position: absolute;
+    top: 50%;
+    width: 90px;
+    -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
+    transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
 }
 
 
@@ -43,27 +48,11 @@
 }
 
 .img-view-previous {
-    // display: none;
-    height: 100%;
     left: 0px;
-    opacity: .9;
-    position: absolute;
-    width: 90px;
-    -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
-    -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
-    transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
 }
 
 .img-view-next {
-    // display: none;
-    height: 100%;
     right: 0px;
-    opacity: .9;
-    position: absolute;
-    width: 90px;
-    -moz-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
-    -webkit-transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
-    transition: opacity .1s cubic-bezier(0.0,0.0,0.2,1);
 }
 
 svg {
@@ -76,23 +65,21 @@ svg {
 
 .focused-image-content {
     width: 100%;
+
 }
 
 .call-to-action {
+    // height:48px;
+
     background-color: white;
     position: fixed;
     bottom:0;
     width: 100%;
+    border-top: dashed;
+    // display: flex;
 }
 
 .call-to-action a {
     margin:19px;
     color: grey;
-}
-
-.modal {
-    position: fixed;
-    top: 10px;
-    color:green;
-    height:100%;
 }

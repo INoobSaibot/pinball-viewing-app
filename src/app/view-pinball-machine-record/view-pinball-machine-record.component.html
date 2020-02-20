@@ -27,22 +27,9 @@
     </button>
 </div>
 
+<app-call-to-action-bar (click)='handleGlossaryClick()'></app-call-to-action-bar>
 
-<!-- controls and links-->
-<!--<hr class='hr'>-->
-<div class='call-to-action'>
-    <!-- this stuff should open a full page modal with the details etc. like srk-->
-    <a href="#"><span class="glyphicon glyphicon-th-list"></span>Games List</a>
-    <a href="https://archive.ipdb.org"><span class="glyphicon glyphicon-folder-open">Archives</span></a>
-
-    <button href="glossary.php" (click)='handleGlossaryClick()'><span class="glyphicon glyphicon-subscript"></span>Pinball&nbsp;Glossary</button>
-    <a href="playing/skills.html"><span class="glyphicon glyphicon-gift"></span>Playing&nbsp;Skills</a>
-    <a href="faq.html"><span class="glyphicon glyphicon-question-sign"></span>FAQ</a>
-    <!--<a href="myinfo/showmyinfo.pl"><span class="glyphicon glyphicon-wrench"></span>Settings</a>-->
-    <!--<a href="search.pl?searchtype=quick"><i class="glyphicon glyphicon-cloud"></i>Submit changes</a>-->
-</div>
-
-<div *ngIf='glossaryModalOpen'>
+<div *ngIf='glossaryModalOpen' (clickOutside)="clickedOutside($event)">
     <app-modal [pinballMachineRecord]="pinballMachineRecord"
                 (closeClicked)='closeClicked($event)'></app-modal>
 </div>
