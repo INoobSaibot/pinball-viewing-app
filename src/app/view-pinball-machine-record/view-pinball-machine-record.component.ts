@@ -11,11 +11,11 @@ import { PinballMachineRecord } from '../view-pinball-machine-record/model/pinba
 export class ViewPinballMachineRecordComponent implements OnInit {
 
   @HostListener('document:keydown.ArrowRight', ['$event']) onRightArrowKeydownHandler(event: KeyboardEvent) {
-    this.isNextClick();
+    this.isNextClick(event);
   }
 
   @HostListener('document:keydown.ArrowLeft', ['$event']) onLeftArrowKeydownHandler(event: KeyboardEvent) {
-    this.isPreviousClick();
+    this.isPreviousClick(event);
   }
 
   readonly base64: string = 'data:image/jpeg;base64, '
@@ -26,7 +26,11 @@ export class ViewPinballMachineRecordComponent implements OnInit {
 
   title: string;
   ipdbNumber: string;
+
   focusedImageSrcString: string;
+  images: string[];
+  pushedToLeft: any[];
+
   imageNumberSelected: number = 0;
 
   glossaryModalOpen: boolean;
@@ -38,23 +42,19 @@ export class ViewPinballMachineRecordComponent implements OnInit {
       this.glossaryModalOpen = true;
     }
     // end dev only
-
+    
+    this.images = this.pinballMachineRecord.pinballMachine.images;
     this.title = this.pinballMachineRecord.pinballMachine.title;
     this.ipdbNumber = this.pinballMachineRecord.ipdbNumber;
-    this.setDefaultImg();
-
+    this.pushedToLeft = new Array();
   }
 
-  closeClicked(e) {
+  closeClicked() {
     this.glossaryModalOpen = false;
   }
 
   get uri(): string{
     return this.pinballMachineRecord.uri;
-  }
-
-  getBase64Image(index): string {
-    return this.base64 + this.pinballMachineRecord.pinballMachine.images[index];
   }
 
   handleGlossaryClick(e: MouseEvent) {
@@ -68,7 +68,9 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     this.glossaryModalOpen = false;
   }
 
-  isPreviousClick() {
+  isPreviousClick(event: Event) {
+    event.stopPropagation();
+    this.loseFocus(this.imageNumberSelected);
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
 
     if (images && this.imageNumberSelected === 0) {
@@ -76,10 +78,12 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     } else {
       this.imageNumberSelected -=1;
     }
-    this.focusedImageSrcString = images[this.imageNumberSelected];
   }
 
-  isNextClick() {
+  isNextClick(event: Event) {
+    event.stopPropagation();
+    this.loseFocus(this.imageNumberSelected);
+
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
 
     if (images && this.imageNumberSelected === images.length -1) {
@@ -87,38 +91,40 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     } else {
       this.imageNumberSelected +=1;
     }
-    this.focusedImageSrcString = images[this.imageNumberSelected];
   }
 
-  swipeHandler(e) {
-    // if(e.deltaX > 0) {
-    //   this.isPreviousClick();
-    // } else {
-    //   this.isNextClick();
-    // }
+  loseFocus(n) {
+    this.pushedToLeft.shift();
+    this.pushedToLeft.push(n);
+  }
+
+  hasLeftTransition(index) {
+    if(this.pushedToLeft.includes(index)) {
+      return true;
+    }
+    return false;
+
+  }
+
+  focusedPosition(i) {
+    if(i === this.imageNumberSelected){
+      return true;
+    }
   }
 
   panHandler(e) {
     let originalVelocity = e.velocityX;
     const velocityFactor = 8;
     const newVelocityNumber =  originalVelocity * velocityFactor;
-    // let intVal = Math.floor(newVelocityNumber);
 
     if(newVelocityNumber > 1) {
-      this.isPreviousClick();
+      this.isPreviousClick(undefined);
     } else if (newVelocityNumber < -1){
-      this.isNextClick();
+      this.isNextClick(undefined);
     }
   }
 
-  private setDefaultImg() {
-    let images: string[] = this.pinballMachineRecord.pinballMachine.images;
-    const defaultImg: string = '';
-
-    if(images && images.length > 0) {
-      this.focusedImageSrcString = this.pinballMachineRecord.pinballMachine.images[this.imageNumberSelected];
-    } else {
-      this.focusedImageSrcString = defaultImg;
-    }
+  generateId(i){
+    return('box'+(i+1));
   }
 }
