@@ -30,7 +30,6 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   imageNumberSelected: number = 0;
 
   glossaryModalOpen: boolean;
-  openEvent: MouseEvent;
 
   ngOnInit() {
     // being dev only
@@ -58,18 +57,15 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     return this.base64 + this.pinballMachineRecord.pinballMachine.images[index];
   }
 
-  handleGlossaryClick(e) {
+  handleGlossaryClick(e: MouseEvent) {
     if(this.glossaryModalOpen === false) {
       this.glossaryModalOpen = true;
-      this.openEvent = e;
+      e.stopPropagation();
     }
   }
 
   clickedOutside(e) {
-    const realOutsideClick = !(e === this.openEvent);
-    if(realOutsideClick) {
-      this.glossaryModalOpen = false;
-    }
+    this.glossaryModalOpen = false;
   }
 
   isPreviousClick() {
