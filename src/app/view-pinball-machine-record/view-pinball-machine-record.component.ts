@@ -18,7 +18,6 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     this.isPreviousClick();
   }
 
-
   readonly base64: string = 'data:image/jpeg;base64, '
   constructor(private pinballMachineRecordService: PinballMachineRecordService) { }
 
@@ -31,14 +30,13 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   imageNumberSelected: number = 0;
 
   glossaryModalOpen: boolean;
-  popupAliveSince: number;
+  openEvent: MouseEvent;
 
   ngOnInit() {
     // being dev only
     if (this.devOnly) {
       this.pinballMachineRecord = this.pinballMachineRecordService.getPinballMachine();
       this.glossaryModalOpen = true;
-      this.popupAliveSince = Date.now();
     }
     // end dev only
 
@@ -60,21 +58,18 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     return this.base64 + this.pinballMachineRecord.pinballMachine.images[index];
   }
 
-  handleGlossaryClick() {
+  handleGlossaryClick(e) {
     if(this.glossaryModalOpen === false) {
       this.glossaryModalOpen = true;
-      this.popupAliveSince = Date.now();
+      this.openEvent = e;
     }
   }
 
   clickedOutside(e) {
-    const now: number = Date.now();
-    const milliseconds = 10; /* clicking open was being picked up as an outside click even though the listener for it was added by the click itself */
-    const realOutsideClick = now - this.popupAliveSince > milliseconds;
+    const realOutsideClick = !(e === this.openEvent);
     if(realOutsideClick) {
       this.glossaryModalOpen = false;
     }
-    // else, this was click from less than 10 millis ago, probably the popup-show-button
   }
 
   isPreviousClick() {

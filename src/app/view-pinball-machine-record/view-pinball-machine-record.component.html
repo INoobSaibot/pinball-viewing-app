@@ -15,7 +15,7 @@
             <path d="M 19.41,20.09 14.83,15.5 19.41,10.91 18,9.5 l -6,6 6,6 z"></path>
         </svg>
     </button>
-    
+
     <!--img -->
     <img class='focused-image-content' [src]='focusedImageSrcString' />
     <!-- img -->
@@ -26,7 +26,7 @@
     </button>
 </div>
 
-<app-call-to-action-bar (click)='handleGlossaryClick()'></app-call-to-action-bar>
+<app-call-to-action-bar (click)='handleGlossaryClick($event)'></app-call-to-action-bar>
 
 <div *ngIf='glossaryModalOpen' (clickOutside)="clickedOutside($event)">
     <app-modal [pinballMachineRecord]="pinballMachineRecord"
