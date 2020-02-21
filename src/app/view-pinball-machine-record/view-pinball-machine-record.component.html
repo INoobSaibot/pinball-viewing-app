@@ -18,7 +18,7 @@
 
     <!--img -->
     <div id=container>
-        <ng-template ngFor let-image [ngForOf]="images" let-i="index" [ngForTrackBy]="trackByFn">
+        <ng-template ngFor let-image [ngForOf]="images" let-i="index">
             <img id={{generateId(i)}} class='box' [ngClass]="{'focused-position':focusedPosition(i), 'left-transition':hasLeftTransition(i)}" [src]='image'/>
           </ng-template>
     </div>
@@ -34,5 +34,5 @@
 
 <div *ngIf='glossaryModalOpen' (clickOutside)="clickedOutside($event)">
     <app-modal [pinballMachineRecord]="pinballMachineRecord"
-                (closeClicked)='closeClicked($event)'></app-modal>
+                (closeClicked)='closeClicked()'></app-modal>
 </div>
