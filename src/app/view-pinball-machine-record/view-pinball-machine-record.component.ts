@@ -69,7 +69,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   }
 
   isPreviousClick(event: Event) {
-    event.stopPropagation();
+    if (event.stopPropagation) {event.stopPropagation();}
     this.loseFocus(this.imageNumberSelected);
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
 
@@ -81,7 +81,7 @@ export class ViewPinballMachineRecordComponent implements OnInit {
   }
 
   isNextClick(event: Event) {
-    event.stopPropagation();
+    if (event.stopPropagation) {event.stopPropagation();}
     this.loseFocus(this.imageNumberSelected);
 
     let images: string[] = this.pinballMachineRecord.pinballMachine.images;
@@ -118,9 +118,9 @@ export class ViewPinballMachineRecordComponent implements OnInit {
     const newVelocityNumber =  originalVelocity * velocityFactor;
 
     if(newVelocityNumber > 1) {
-      this.isPreviousClick(undefined);
+      this.isPreviousClick(e);
     } else if (newVelocityNumber < -1){
-      this.isNextClick(undefined);
+      this.isNextClick(e);
     }
   }
 
